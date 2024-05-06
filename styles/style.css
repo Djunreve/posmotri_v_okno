@@ -8,14 +8,10 @@ html {
   block-size: 100%;
 }
 
-.page {
-  inline-size: 1200px;
-  block-size: 100%;
-  margin: auto;
-  color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  background-color: #1b1919;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Fira Sans Condensed", sans-serif;
 }
 
 h1,
@@ -32,7 +28,260 @@ fieldset {
   padding: 0;
 }
 
+input, button {
+  font-family: inherit;
+  outline: none;
+}
+
 ul,
 ol {
   list-style: none;
+}
+
+fieldset {
+  border: none;
+}
+
+.page {
+  display: flex;
+  block-size: 100%;
+  font-size: 18px;
+  color: #fff;
+  background: #1b1919;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+.button {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 34px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background: transparent;
+  border: 2px transparent;
+  box-shadow: inset 0 0 0 1px #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  background: #545050;
+}
+
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+
+.content {
+  display: flex;
+  align-items: end;
+  margin: auto;
+  padding: 20px 0;
+  width: 1140px;
+  column-gap: 32px;
+}
+
+
+.preloader {
+  position: absolute;
+}
+
+
+.search-form {
+  display: grid;
+  grid-template-columns: min-content max-content auto;
+  align-items: end;
+  column-gap: 40px;
+}
+
+.search-form__fieldset-title {
+  margin-bottom: 5px;
+  line-height: 21.6px;
+  text-align: left;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.search-form__textfield {
+  appearance: none;
+  width: 211px;
+  height: 27px;
+  font-size: 18px;
+  color: #fff;
+  border: 1px solid;
+  border-color: #fff transparent;
+  background: transparent;
+}
+
+.search-form__textfield:not(:hover):active {
+  border-color: #fff;
+}
+
+.search-form__textfield::placeholder {
+  color: rgba(255 255 255 / 70%);
+}
+
+.search-form__label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.search-form__label + .search-form__label {
+  margin-left: 15px;
+}
+
+.search-form__label:has(.search-form__checkbox:focus-visible),
+.search-form__textfield:not(:active, :hover):focus-visible
+{
+  outline: 1px solid;
+  outline-offset: 1px;
+}
+
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
+}
+
+.search-form__pseudo-checkbox {
+  position: relative;
+  margin-right: 5px;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #fff;
+}
+
+.search-form__pseudo-checkbox::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
+  background: #fff;
+}
+
+.search-form__label-text {
+  line-height: 1;
+}
+
+
+.title {
+  line-height: 70.5px;
+  text-transform: uppercase;
+  font-family: Oswald, sans-serif;
+  font-weight: 700;
+  font-size: 75px;
+}
+
+
+.result {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.result__video {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.result__video-container {
+  position: relative;
+  width: 711px;
+  height: 386px;
+}
+
+.content__accent {
+  color: #545050;
+}
+
+.content__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  row-gap: 26px;
+  width: 400px;
+}
+
+.content__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin: 0 -2px -1px; /* для outline */
+  padding: 0 2px 1px;
+  height: 298px;
+  max-height: 298px;
+  overflow-y: auto;
+}
+
+
+.content__card-link {
+  display: block;
+  padding: 2px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.content__card-link:hover {
+  text-decoration: underline;
+}
+
+.content__card-link:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: -1px;
+}
+
+.content__card-link_current {
+  background: #545050;
+}
+
+
+.content__video-card {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 8px;
+}
+
+.content__video-card-description-container {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.content__video-card-title {
+  line-height: 1;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.content__video-card-description {
+  font-size: 18px;
+}
+
+.content__video-card-thumbnail {
+  flex-shrink: 0;
+  width: 193px;
+  height: 103px;
+  object-fit: cover;
 }
