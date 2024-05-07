@@ -70,9 +70,7 @@ fieldset {
   font-size: 18px;
   color: #fff;
   background: transparent;
-  border: 2px transparent;
-  box-shadow: inset 0 0 0 1px #fff;
-  outline: none;
+  border: 1px solid currentColor;
   cursor: pointer;
 }
 
@@ -100,11 +98,6 @@ fieldset {
 }
 
 
-.preloader {
-  position: absolute;
-}
-
-
 .search-form {
   display: grid;
   grid-template-columns: min-content max-content auto;
@@ -123,7 +116,7 @@ fieldset {
 .search-form__textfield {
   appearance: none;
   width: 225px;
-  height: 27px;
+  min-height: 27px;
   font-size: 18px;
   color: #fff;
   border: 1px solid;
@@ -147,7 +140,7 @@ fieldset {
 }
 
 .search-form__label + .search-form__label {
-  margin-left: 15px;
+  margin-left: 11px;
 }
 
 .search-form__label:has(.search-form__checkbox:focus-visible),
@@ -199,17 +192,18 @@ fieldset {
   row-gap: 16px;
 }
 
+.result__video-container {
+  position: relative;
+  width: 711px;
+  height: 386px;
+}
+
 .result__video {
   width: inherit;
   height: inherit;
   object-fit: cover;
 }
 
-.result__video-container {
-  position: relative;
-  width: 711px;
-  height: 386px;
-}
 
 .content__accent {
   color: #545050;
@@ -224,21 +218,18 @@ fieldset {
 }
 
 .content__list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  row-gap: 30px;
-  margin: 0 -2px -1px; /* для outline */
-  padding: 0 2px 1px;
+  padding: 1px;
   height: 298px;
-  max-height: 298px;
   overflow-y: auto;
 }
 
+.content__list-item:not(:last-of-type) { /* в данном случае равносильно :not(:last-child) */
+  margin-bottom: 30px;
+}
 
 .content__card-link {
   display: block;
-  padding: 2px;
+  padding: 2px; /* нельзя заменить на margin, по макету у активной карточки есть фон или макет 💩? */
   text-decoration: none;
   color: #fff;
 }
@@ -249,10 +240,11 @@ fieldset {
 
 .content__card-link:focus-visible {
   outline: 1px solid #fff;
-  outline-offset: -1px;
+  outline-offset: 1px;
 }
 
-.content__card-link_current {
+.content__card-link_current,
+.content__card-link:focus-visible {
   background: #545050;
 }
 
@@ -270,13 +262,20 @@ fieldset {
 
 .content__video-card-title {
   line-height: 1;
-  overflow-wrap: break-word;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 30px;
 }
 
 .content__video-card-description {
+  /*
+    максимальная ширина здесь не нужна, так как картинке справа запрещено сжиматься (flex-shrink: 0),
+    это позволит менять размер картинки без подгонки максимальной ширины описания
+  */
   line-height: 16px;
+  overflow-wrap: break-word; /* для длинных беспробельных слов */
   font-size: 18px;
 }
 
@@ -285,4 +284,8 @@ fieldset {
   width: 193px;
   height: 103px;
   object-fit: cover;
+  /*
+    object-position: 50% 50% применяется по умолчанию, если присутствует свойство object-fit
+    потому явно указывать его не стоит, если не нужно поведение отличное от центрирования
+  */
 }
