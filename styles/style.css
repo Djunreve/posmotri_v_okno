@@ -218,6 +218,7 @@ fieldset {
 }
 
 .content__list {
+  position: relative;
   padding: 1px;
   height: 298px;
   overflow-y: auto;
@@ -261,11 +262,13 @@ fieldset {
 }
 
 .content__video-card-title {
+  margin-bottom: 4px;
   line-height: 1;
   text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-family: Oswald, sans-serif;
   font-size: 30px;
 }
 
